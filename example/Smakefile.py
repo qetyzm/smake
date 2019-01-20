@@ -8,7 +8,7 @@ sm.gcc.sources = sm.merge(
     sm.wildcard('src/*.c'), 
     sm.wildcard('src/module/*.c'))
 sm.gcc.compiler_flags = ['pedantic']
-sm.gcc.warning_flags = ['all', 'extra']
+sm.gcc.warning_flags = ['all']
 sm.gcc.linker_flags = ['sdl2']
 
 if sm.get_platform().startswith("win"):

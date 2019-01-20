@@ -30,8 +30,10 @@ class GccConfig(CompilerConfig):
         self.include_dirs = []
         self.library_dirs = []
         self._compiler = "gcc"
+        self._exit_code = 0
     
     def link(self):
+        print("[SMAKE]\tLinking...")
         for file in self.sources:
             compiler_flags = " ".join(list(map(
                 lambda x: "-" + x, self.compiler_flags)))
@@ -44,22 +46,41 @@ class GccConfig(CompilerConfig):
             library_dirs = " ".join(list(map(
                 lambda x: "-L" + x, self.library_dirs)))
 
-            basename = file.split('.')[:-1]
+            basename = ".".join(file.split('.')[:-1])
             new_file = self.smake.obj_dir + os.path.sep + basename + ".o"
+            self.smake.mkdir_p(
+                os.path.sep.join(
+                    new_file.split(os.path.sep)[:-1]))
+            
+            if os.path.exists(new_file):
+                continue
 
             process = "{} -c {} -o {} {} {} {} {} {}".format(
                 self._compiler, file, new_file, compiler_flags, 
                 warning_flags, include_dirs, linker_flags, library_dirs)
+            process = process.split(' ')
+            process = list(filter(None, process))
 
-            print("[CC]" + process)
+            print("[CC]\t" + ' '.join(process))
 
-            subprocess.call(process)
+            with subprocess.Popen(process, shell=True) as proc:
+                self._exit_code = proc.wait()
+                if self._exit_code:
+                    print("[SMAKE]\tLinking stopped...")
+                    return
 
     def compile(self):
+        if self._exit_code:
+            return
+        print("[SMAKE]\tCompiling...")
+        self.smake.mkdir_p(self.smake.bin_dir)
         all_files = []
         for file in self.sources:
-            basename = file.split('.')[:-1]
+            basename = ".".join(file.split('.')[:-1])
             new_file = self.smake.obj_dir + os.path.sep + basename + ".o"
+            self.smake.mkdir_p(
+                os.path.sep.join(
+                    new_file.split(os.path.sep)[:-1]))
             all_files.append(new_file)
         
         all_files = " ".join(all_files)
@@ -80,10 +101,13 @@ class GccConfig(CompilerConfig):
         process = "{} {} -o {} {} {} {} {} {}".format(
             self._compiler, all_files, target, compiler_flags, 
             warning_flags, include_dirs, linker_flags, library_dirs)
-        
-        print("[CC]" + process)
+        process = process.split(' ')
+        process = list(filter(None, process))
 
-        subprocess.call(process)
+        print("[CC]\t" + ' '.join(process))
+
+        with subprocess.Popen(process, shell=True) as proc:
+            proc.communicate()
 
 
 class GccCppConfig(GccConfig):
