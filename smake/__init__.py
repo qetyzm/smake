@@ -35,7 +35,7 @@ class Smake:
         return lists
     
     def get_platform(self):
-        system = platform.platform()
+        system = platform.system()
         if system == "Windows":
             if sys.maxsize > 2**32:
                 return "win64"
