@@ -4,16 +4,16 @@ import os
 import errno
 import glob
 
-import smake.config
+import smake_buildtools.config
 
 class Smake:
     def __init__(self):
         self.name = ""
         self.obj_dir = "obj"
         self.bin_dir = "bin"
-        self.gcc = smake.config.GccConfig(self)
-        self.gcc_cpp = smake.config.GccCppConfig(self)
-        self.clang = smake.config.ClangConfig(self)
+        self.gcc = smake_buildtools.config.GccConfig(self)
+        self.gcc_cpp = smake_buildtools.config.GccCppConfig(self)
+        self.clang = smake_buildtools.config.ClangConfig(self)
 
         self._smake_dir = os.path.join(os.path.expanduser("~"), "smake")
         self._package_dir = os.path.join(self._smake_dir, "packages")
@@ -69,3 +69,10 @@ class Smake:
         self.mkdir_p(target_path)
         from shutil import copyfile
         copyfile(self.bin_dir, target_path)
+
+    def remove_dir(self, directory):
+        from shutil import rmtree
+        rmtree(directory)
+
+    def remove_file(self, file):
+        os.remove(file)

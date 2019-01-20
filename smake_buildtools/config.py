@@ -1,4 +1,3 @@
-import smake
 import subprocess
 import os
 
@@ -120,4 +119,3 @@ class ClangConfig(GccConfig):
     def __init__(self, smake):
         super().__init__(smake)
         self._compiler = "clang"
-        # TODO make sure the flags are alright

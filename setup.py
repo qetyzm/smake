@@ -1,16 +1,13 @@
 from setuptools import setup
 
 setup(
-    name="smake",
+    name="smake_buildtools",
     version="0.1.0",
-    packages=['smake'],
+    packages=['smake_buildtools'],
     entry_points={
-        'console_scripts': [
-            'smake = smake.__main__:main'
-        ]
     },
     install_requires=[],
-    description='Simple dependency downloader and Make replacement',
+    description='Simple Make replacement',
     author='Qetyzm',
     author_email='qetyzm@gmail.com',
     url='https://github.com/qetyzm/smake',
