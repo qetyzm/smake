@@ -9,6 +9,51 @@ You think that Makefiles are confusing or unreadable?
 You're too lazy to go through CMake or Autotools? If so, SMake is for you.
 It's simply a Python module that used in .py file links and compiles your C/C++ project.
 
+# Example code
+
+Example for Hello world example:
+
+`src/hello.c`:
+```C
+#include <stdio.h>
+
+int main() {
+    printf("Hello, SMakefile!\n");
+    return 0;
+}
+```
+
+`Smakefile.py`:
+```python
+import smake_buildtools
+import click
+
+sm = smake_buildtools.Smake()
+sm.name = 'hello'
+sm.obj_dir = 'obj'
+sm.bin_dir = 'build'
+
+@click.group()
+def cli():
+    pass
+    
+@cli.command()
+def install():
+    sm.gcc.sources = ['src/hello.c']
+    sm.gcc.compiler_flags.append('pedantic')
+    sm.gcc.warning_flags.append('all')       
+    sm.gcc.link()
+    sm.gcc.compile()
+
+@cli.command()
+def clean():
+    sm.remove_dir(sm.obj_dir)
+    sm.remove_dir(sm.bin_dir)
+
+if __name__ == "__main__":
+    cli()
+```
+
 # How to install
 
 Using pip:
