@@ -73,9 +73,9 @@ With help comes `Smake.get_platform()`:
 
 ```python
 # SFML 2
-if sm.get_platform().startswith("win"): # win32, win64
-    sm.gcc_cpp.include_dirs.append("C:\\SFML2\\include")
-    sm.gcc_cpp.library_dirs.append("C:\\SFML2\\lib")
+if sm.get_platform().startswith('win'): # win32, win64
+    sm.gcc_cpp.include_dirs.append('C:\\SFML2\\include')
+    sm.gcc_cpp.library_dirs.append('C:\\SFML2\\lib')
 ```
 
 ## Linking and compiling
@@ -122,8 +122,8 @@ def install:
     sm.gcc_cpp.linker_flags.append('sfml-system')
     sm.gcc_cpp.linker_flags.append('sfml-audio')
     if sm.get_platform().startswith("win"): # win32, win64
-        sm.gcc_cpp.include_dirs.append("C:\\SFML2\\include")
-        sm.gcc_cpp.library_dirs.append("C:\\SFML2\\lib")
+        sm.gcc_cpp.include_dirs.append('C:\\SFML2\\include')
+        sm.gcc_cpp.library_dirs.append('C:\\SFML2\\lib')
        
     sm.gcc_cpp.link()
     sm.gcc_cpp.compile()
@@ -138,7 +138,7 @@ def clean():
     sm.remove_dir(sm.obj_dir)
     sm.remove_dir(sm.bin_dir)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     cli()
 ```
 
