@@ -121,7 +121,7 @@ def install:
     sm.gcc_cpp.linker_flags.append('sfml-window')
     sm.gcc_cpp.linker_flags.append('sfml-system')
     sm.gcc_cpp.linker_flags.append('sfml-audio')
-    if sm.get_platform().startswith("win"): # win32, win64
+    if sm.get_platform().startswith('win'): # win32, win64
         sm.gcc_cpp.include_dirs.append('C:\\SFML2\\include')
         sm.gcc_cpp.library_dirs.append('C:\\SFML2\\lib')
        
@@ -129,7 +129,7 @@ def install:
     sm.gcc_cpp.compile()
     
     # post compile stuff
-    if sm.get_platform().startswith("linux") or sm.get_platform() == "darwin":
+    if sm.get_platform().startswith('linux') or sm.get_platform() == 'darwin':
         target_path = sm.make_path('usr', 'bin', sm.name)
         sm.copy_executable_to(target_path)
 
