@@ -128,7 +128,7 @@ def install():
     sm.gcc_cpp.link()
     sm.gcc_cpp.compile()
     
-    # post compile stuff
+    # post-compile stuff
     if sm.get_platform().startswith('linux') or sm.get_platform() == 'darwin':
         target_path = sm.make_path('usr', 'bin', sm.name)
         sm.copy_executable_to(target_path)
