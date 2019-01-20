@@ -54,6 +54,10 @@ if __name__ == "__main__":
     cli()
 ```
 
+## Running the script
+
+`$ python ./SMakefile.py install`
+
 # How to install
 
 Using pip:
@@ -110,11 +114,11 @@ sm.gcc_cpp.linker_flags.append('sfml-system')
 sm.gcc_cpp.linker_flags.append('sfml-audio')
 ```
 
+## Platform checking
+
 For Linux it's easy to install libraries via the package manager.
 But what if you want specifically for Windows to add SFML `include/` and `lib/` directories?
 With help comes `Smake.get_platform()`:
-
-## Platform checking
 
 ```python
 # SFML 2
