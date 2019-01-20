@@ -109,7 +109,7 @@ def cli():
     pass
     
 @cli.command()
-def install:
+def install():
     sm.gcc_cpp.sources = sm.merge(
         sm.wildcard('src/*.cpp'),
         sm.wildcard('src/module/*.cpp'))
