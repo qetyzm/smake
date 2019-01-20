@@ -10,9 +10,10 @@ class Smake:
     def __init__(self):
         self.name = ""
         self.obj_dir = "obj"
-        self.target = "bin/app"
+        self.bin_dir = "bin"
         self.gcc = smake.config.GccConfig(self)
         self.gcc_cpp = smake.config.GccCppConfig(self)
+        self.clang = smake.config.ClangConfig(self)
 
         self._smake_dir = os.path.join(os.path.expanduser("~"), "smake")
         self._package_dir = os.path.join(self._smake_dir, "packages")
@@ -20,6 +21,9 @@ class Smake:
 
         self.mkdir_p(self._package_dir)
         self.mkdir_p(self._bin_dir)
+
+    def _get_target(self):
+        return self.bin_dir + os.path.sep + self.name
 
     def wildcard(self, path):
         return glob.glob(path)
@@ -53,8 +57,15 @@ class Smake:
                 pass
             else:
                 raise
-        
+
+    def make_path(self, *path):
+        path = list(path)
+        for i in range(len(path)):
+            if path[i] == "~":
+                path[i] = os.path.expanduser(path[i])
+        return os.path.join(path)
+
     def copy_executable_to(self, target_path):
         self.mkdir_p(target_path)
         from shutil import copyfile
-        copyfile(self.target, target_path)
+        copyfile(self.bin_dir, target_path)
