@@ -1,13 +1,15 @@
 # SMake
 Simple Make replacement for lazy developers that like Python.
 
-## Requirements
-[Python](http://python.org) 3.6+
-
 ## What is it for?
 You think that Makefiles are confusing or unreadable? 
 You're too lazy to go through CMake or Autotools? If so, SMake is for you.
 It's simply a Python module that used in .py file links and compiles your C/C++ project.
+
+
+## Requirements
+- [Python](http://python.org) 3.6+
+- Click (optional)
 
 ## Supported compilers
 
