@@ -2,12 +2,18 @@
 Simple Make replacement for lazy developers that like Python.
 
 ## Requirements
-`Python 3.6+`
+[Python](http://python.org) 3.6+
 
 ## What is it for?
 You think that Makefiles are confusing or unreadable? 
 You're too lazy to go through CMake or Autotools? If so, SMake is for you.
 It's simply a Python module that used in .py file links and compiles your C/C++ project.
+
+## Supported compilers
+
++ gcc
++ g++
++ clang
 
 # Example code
 
@@ -80,11 +86,6 @@ sm.name = 'app'
 sm.obj_dir = 'obj'
 sm.bin_dir = 'build'
 ```
-
-## What compilers are available?
-
-For now only 3 compilers are supported: gcc (`gcc`), g++ (`gcc_cpp`) and clang (`clang`).
-In this example we will use `g++` compiler because we want to compile C++ files.
 
 ## Adding source files
 
