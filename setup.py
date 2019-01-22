@@ -2,14 +2,11 @@ from setuptools import setup
 
 setup(
     name="smake_buildtools",
-    version="0.1.1",
+    version="0.1.2",
     packages=['smake_buildtools'],
     entry_points={
     },
     install_requires=[
-        'platform',
-        'glob',
-        'subprocess'
     ],
     description='Simple Make replacement for developers who love Python',
     author='Qetyzm',
