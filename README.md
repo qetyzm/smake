@@ -130,14 +130,14 @@ if sm.get_platform().startswith('win'): # win32, win64
     sm.gcc_cpp.library_dirs.append('C:\\SFML2\\lib')
 ```
 
-## Linking and compiling
+## Compiling and linking
 
-Now the easiest ones are left: linking and compiling. 
-For this you use `Smake.link()` and `Smake.compile()` method, respectively.
+Now the easiest ones are left: compiling and linking. 
+For this you use `Smake.compile()` and `Smake.link()` method, respectively.
 
 ```python
-sm.gcc_cpp.link()
 sm.gcc_cpp.compile()
+sm.gcc_cpp.link()
 ```
 
 ## Summary
@@ -176,11 +176,11 @@ def install():
     if sm.get_platform().startswith('win'): # win32, win64
         sm.gcc_cpp.include_dirs.append('C:\\SFML2\\include')
         sm.gcc_cpp.library_dirs.append('C:\\SFML2\\lib')
-       
-    sm.gcc_cpp.link()
+
     sm.gcc_cpp.compile()
+    sm.gcc_cpp.link()
     
-    # post-compile stuff
+    # post-linking stuff
     if sm.get_platform().startswith('linux') or sm.get_platform() == 'darwin':
         target_path = sm.make_path('usr', 'bin', sm.name)
         sm.copy_executable_to(target_path)
