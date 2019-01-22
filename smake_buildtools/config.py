@@ -31,8 +31,8 @@ class GccConfig(CompilerConfig):
         self._compiler = "gcc"
         self._exit_code = 0
     
-    def link(self):
-        print("[SMAKE]\tLinking...")
+    def compile(self):
+        print("[SMAKE]\tCompiling...")
         for file in self.sources:
             compiler_flags = " ".join(list(map(
                 lambda x: "-" + x, self.compiler_flags)))
@@ -68,10 +68,10 @@ class GccConfig(CompilerConfig):
                     print("[SMAKE]\tLinking stopped...")
                     return
 
-    def compile(self):
+    def link(self):
         if self._exit_code:
             return
-        print("[SMAKE]\tCompiling...")
+        print("[SMAKE]\tLinking...")
         self.smake.mkdir_p(self.smake.bin_dir)
         all_files = []
         for file in self.sources:
