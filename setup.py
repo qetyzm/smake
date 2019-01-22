@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="smake_buildtools",
-    version="0.1.0",
+    version="0.1.1",
     packages=['smake_buildtools'],
     entry_points={
     },
